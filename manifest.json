@@ -9,7 +9,7 @@
       "32": "icons/favicon-32x32.png",
       "48": "icons/favicon-48x48.png"
    },
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp6gPyMJONkMnSG581yZXHvX8sT56epTPuHYBNaAlSediJAv7llECZc/dKVa3TQ3tFf20p7Nt7CcstY41JtuzHAgiEn4hTg5qZoNq3fGQ3cXKczde6VoVaeQj6duffsrJ2ciWIZoq66g5EGXnWR2RuD37VMcMj7KNmf9+Kzpbg7ok/qXLUba7lUWPjIgc3NaEE9yX1WGQ7t4Lasl+3N02Fcef1G53NbfT53Ax0sE2o0MSUqSiJapEKEMa+9RmypRtOAaREbauaL3m140hzdfHWBgvflOrFC3BpNA/AjAXJBaVqGI6OO31bmf1P+j56asWLjwAe8ZHMFgaUDgRboqRYQIDAQAB",
+   "key": "",
    "manifest_version": 3,
    "name": "DoodleTab",
    "options_page": "options.html",
