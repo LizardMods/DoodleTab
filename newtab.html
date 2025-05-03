@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>DoodleTab</title>
+    <script src="newtab.js"></script>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      #doodle {
+        height: auto;
+      }
+      h1 {
+        margin: 10px 0;
+      }
+      #search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .search-input {
+        width: 500px;
+        padding: 10px;
+        font-size: 16px;
+        border: 3px solid #ccc;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #333;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      }
+      .search-button {
+        padding: 10px 15px;
+        margin-left: 10px;
+        font-size: 16px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .search-button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      #quick-links {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        width: 100%;
+        text-align: center;
+      }
+      #quick-links a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        padding: 10px 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 75px;
+      }
+      #quick-links a:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <img id="doodle" alt="My Animated Doodle" />
+    <h1 id="quote" style="color: #c4ecf5">I am broken</h1>
+    <div id="search-container">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search the web" autofocus />
+      <button id="searchButton" class="search-button">Search</button>
+    </div>
+    <div id="quick-links"></div>
+  </body>
+</html>

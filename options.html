@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Custom Doodle Options</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        margin: 0;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      /* Light theme (default) */
+      body {
+        background-color: #ffffff;
+        color: #333333;
+      }
+      input[type="text"],
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 5px;
+        background-color: #f9f9f9;
+        color: #333333;
+        border: 1px solid #cccccc;
+      }
+      button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #e0e0e0;
+        color: #333333;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #d0d0d0;
+      }
+      .quote-entry {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+      .quote-entry input {
+        margin-right: 10px;
+        flex-grow: 1;
+      }
+      .link-entry {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+      .link-entry input {
+        margin-right: 10px;
+        flex-grow: 1;
+      }
+      .size-control {
+        margin-top: 5px;
+      }
+      .size-control input {
+        width: 60px;
+      }
+      label {
+        display: block;
+        margin-top: 15px;
+      }
+      .donation-link {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .donation-link a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .donation-link a:hover {
+        text-decoration: underline;
+      }
+      /* Dark theme */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #1e1e1e;
+          color: #d4d4d4;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+          background-color: #2d2d2d;
+          color: #d4d4d4;
+          border: 1px solid #555555;
+        }
+        button {
+          background-color: #3c3c3c;
+          color: #d4d4d4;
+        }
+        button:hover {
+          background-color: #4a4a4a;
+        }
+        .donation-link a {
+          color: #66b3ff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Extension Options</h1>
+
+    <h2>Quick Links</h2>
+    <label>
+      <input type="checkbox" id="enableQuickLinks" checked />
+      Enable Quick Links on New Tab
+    </label>
+    <div id="linksContainer"></div>
+    <button id="addLinkBtn">Add Quick Link</button>
+
+    <h2>Doodle Image</h2>
+    <label>
+      Doodle Image URL:
+      <input type="text" id="doodleImage" placeholder="images/my-doodle.gif" />
+    </label>
+    <div class="size-control">
+      <label>Doodle Size (%):</label>
+      <input type="number" id="doodleSize" min="10" max="400" step="5" value="50" />
+    </div>
+
+    <h2>Background Image</h2>
+    <label>
+      Background Image URL:
+      <input type="text" id="backgroundImage" placeholder="images/background.jpg" />
+    </label>
+
+    <h2>Quotes for each day of the month</h2>
+    <label>
+      <input type="checkbox" id="enableQuotes" checked />
+      Enable Quotes on New Tab
+    </label>
+    <div id="quotesContainer"></div>
+    <button id="addQuoteBtn">Add Quote</button>
+
+    <label>
+      Quote Color:
+      <input type="color" id="quoteColor" value="#c4ecf5" />
+    </label>
+
+    <label>
+      Quote Font:
+      <select id="quoteFont">
+        <option value="Segoe UI">Segoe UI</option>
+        <option value="Arial">Arial</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Helvetica">Helvetica</option>
+        <option value="Roboto">Roboto</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Verdana">Verdana</option>
+        <option value="custom">Custom (type below)</option>
+      </select>
+    </label>
+    <label>
+      Custom Font Name:
+      <input type="text" id="customQuoteFont" placeholder="Enter font name (e.g., Comic Sans MS)" />
+    </label>
+    <div class="size-control">
+      <label>Quote Font Size (px):</label>
+      <input type="number" id="quoteFontSize" min="10" max="72" step="2" value="24" />
+    </div>
+
+    <button id="saveBtn">Save All Options</button>
+
+    <div class="donation-link">
+      <p>💖 Support My Work!<br>
+      Did I help you out? Help me out!<br>
+      Your support allows me to keep creating, building, and helping others like you. Every donation, big or small, makes a huge difference.<br>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=W5C8A6SLEGNRA" target="_blank">Donate via PayPal</a></p>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
