@@ -99,6 +99,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📱 Contact
 
-Created by [LizardMods](https://www.linkz.gg/LizardMods) - feel free to reach out with questions or feedback on my [Linkz.gg Bio](https://www.linkz.gg/LizardMods)!
+Created by [LizardMods](https://www.linkz.gg/LizardMods) - feel free to reach out with questions or feedback on my [Linkz.gg Bio](https://www.linkz.gg/lizardmods)!
 
 ---
