@@ -51,6 +51,7 @@ async function saveOptions() {
     document.getElementById('doodleImage').value = doodleImage;
     document.getElementById('backgroundImage').value = backgroundImage;
     status.textContent = 'Options saved!';
+    alert('Options saved!');
     const results = await Promise.all([...new Set([doodleImage, backgroundImage])]
       .map(source => DoodleImages.warm(source)));
     status.textContent = results.every(Boolean)
