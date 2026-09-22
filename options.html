@@ -127,6 +127,10 @@
       <input type="text" id="backgroundImage" placeholder="images/background.jpg" />
     </label>
 
+    <button id="clearImageCacheBtn" type="button">Clear Image Cache</button>
+    <p>Remote images are saved on this device when you allow access to their sites. Clear the cache to download fresh copies on the next new tab.</p>
+    <p id="imageCacheStatus" role="status" aria-live="polite"></p>
+
     <h2>Quotes for each day of the month</h2>
     <label>
       <input type="checkbox" id="enableQuotes" checked />
@@ -172,6 +176,7 @@
       <a href="https://www.paypal.com/donate/?hosted_button_id=W5C8A6SLEGNRA" target="_blank">Donate via PayPal</a></p>
     </div>
 
+    <script src="image-cache.js"></script>
     <script src="options.js"></script>
   </body>
 </html>

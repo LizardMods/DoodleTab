@@ -10,7 +10,7 @@
 - **Doodle Image Support**: Add and scale a secondary doodle image of your choice
 - **Daily Quotes**: Enjoy a different quote each day of the month (31 customizable quotes)
 - **Quote Customization**: Change quote colors and use any font installed on your computer
-- **Quick Links**: Add up to five customizable quick links for easy navigation
+- **Quick Links**: Add customizable quick links that open in the current tab
 - **Complete Personalization**: Toggle features on/off and customize to your preference
 
 ## 🚀 Installation
@@ -45,6 +45,9 @@ Unlike other new tab extensions that are bloated with features you don't need, D
 
 - **Day-Based Quotes**: The extension checks the current day of the month (1-31) and displays the corresponding quote from your list
 - **Local Font Integration**: Uses fonts already installed on your computer instead of loading Google Fonts
+- **Image Cache**: Remote doodle and background images are stored on this device in Cache Storage (`doodletab-images-v1`) and reused across new tabs. Save options and allow access to the image sites to pre-cache them. Only the sites used by your image URLs are requested; access to all sites is not granted automatically. Cache downloads omit credentials.
+- **Refresh Images**: Use **Clear Image Cache** in Options, then open a new tab to fetch updated images. Already-open tabs keep displaying their current images. Browser storage cleanup can also remove cached images.
+- **Image Fallback**: If permission is denied, a download fails, or caching is unavailable, the original image URL is used directly. Leave image fields blank and save to restore `images/my-doodle.gif` and `images/background.jpg`.
 - **User Preferences**: All settings are saved to your browser's local storage
 
 ## ❓ Frequently Asked Questions
@@ -83,6 +86,12 @@ cd DoodleTab
 # 3. Click "Load unpacked"
 # 4. Select the DoodleTab folder
 ```
+
+### Checking this change
+
+Run `node --test tests/*.test.cjs` for cache reuse, offline reads, permission denial, cache clearing, and fallback checks.
+
+In Chrome, reload the unpacked extension, save remote image URLs and allow the requested site access, then open several new tabs. Check that the images are reused without new downloads. Clear the image cache and open another tab to check that they download again. Also verify same-tab Quick Links, saving after removing a link, and restoring packaged images by saving blank image fields.
 
 ## 🤝 Contributing
 

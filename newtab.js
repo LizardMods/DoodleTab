@@ -116,7 +116,6 @@ window.addEventListener("DOMContentLoaded", () => {
             const a = document.createElement("a");
             a.href = link.url;
             a.textContent = link.text;
-            a.target = "_blank";
             linksContainer.appendChild(a);
           });
           linksContainer.style.display = "block";
@@ -127,7 +126,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (doodleElement) {
         if (items.doodleImage) {
-          doodleElement.src = items.doodleImage;
+          DoodleImages.resolve(items.doodleImage).then(source => {
+            doodleElement.src = source;
+          });
           doodleElement.style.maxWidth = items.doodleSize;
           doodleElement.style.display = "block";
         } else {
@@ -136,7 +137,9 @@ window.addEventListener("DOMContentLoaded", () => {
       }
 
       if (items.backgroundImage) {
-        document.body.style.backgroundImage = `url(${items.backgroundImage})`;
+        DoodleImages.resolve(items.backgroundImage).then(source => {
+          document.body.style.backgroundImage = `url(${JSON.stringify(source)})`;
+        });
       } else {
         document.body.style.backgroundImage = "none";
       }

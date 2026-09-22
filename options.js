@@ -1,8 +1,10 @@
-function saveOptions() {
+async function saveOptions() {
+  const linksContainer = document.getElementById('linksContainer');
+  const quotesContainer = document.getElementById('quotesContainer');
   const enableQuickLinks = document.getElementById('enableQuickLinks').checked;
-  const quickLinks = Array.from(linksContainer.querySelectorAll(".link-entry")).map((div, index) => ({
-    url: document.getElementById(`linkUrl${index}`).value,
-    text: document.getElementById(`linkText${index}`).value
+  const quickLinks = Array.from(linksContainer.querySelectorAll(".link-entry")).map(div => ({
+    url: div.querySelector(".link-url").value,
+    text: div.querySelector(".link-text").value
   })).filter(link => link.url.trim() && link.text.trim());
   const enableQuotes = document.getElementById('enableQuotes').checked;
   const quotes = Array.from(quotesContainer.querySelectorAll("input[type='text']"))
@@ -10,8 +12,8 @@ function saveOptions() {
     .filter(quote => quote.trim() !== "");
   const doodleImageInput = document.getElementById('doodleImage').value;
   const backgroundImageInput = document.getElementById('backgroundImage').value;
-  const doodleImage = doodleImageInput.trim() === "" ? "my-doodle.gif" : doodleImageInput;
-  const backgroundImage = backgroundImageInput.trim() === "" ? "background.jpg" : backgroundImageInput;
+  const doodleImage = doodleImageInput.trim() || "images/my-doodle.gif";
+  const backgroundImage = backgroundImageInput.trim() || "images/background.jpg";
   const quoteColor = document.getElementById('quoteColor').value;
   const doodleSize = document.getElementById('doodleSize').value + '%';
   const quoteFont = document.getElementById('quoteFont').value;
@@ -21,22 +23,43 @@ function saveOptions() {
 
   console.log('Saving quote font:', finalQuoteFont, 'Size:', quoteFontSize); // Debug
 
-  chrome.storage.local.set({
-    enableQuickLinks,
-    quickLinks,
-    enableQuotes,
-    quotes,
-    doodleImage,
-    backgroundImage,
-    quoteColor,
-    doodleSize,
-    quoteFont: finalQuoteFont,
-    quoteFontSize
-  }, () => {
-    alert('Options saved!');
+  const saveButton = document.getElementById('saveBtn');
+  const status = document.getElementById('imageCacheStatus');
+  saveButton.disabled = true;
+  status.textContent = 'Saving options…';
+  // Request directly from the Save click, before any asynchronous work.
+  const origins = DoodleImages.origins([doodleImage, backgroundImage]);
+  try {
+    if (origins.length) await chrome.permissions.request({ origins });
+  } catch {
+    // Saving still works if site access is unavailable or denied.
+  }
+
+  try {
+    await chrome.storage.local.set({
+      enableQuickLinks,
+      quickLinks,
+      enableQuotes,
+      quotes,
+      doodleImage,
+      backgroundImage,
+      quoteColor,
+      doodleSize,
+      quoteFont: finalQuoteFont,
+      quoteFontSize
+    });
     document.getElementById('doodleImage').value = doodleImage;
     document.getElementById('backgroundImage').value = backgroundImage;
-  });
+    const results = await Promise.all([...new Set([doodleImage, backgroundImage])]
+      .map(source => DoodleImages.warm(source)));
+    status.textContent = results.every(Boolean)
+      ? 'Options saved! Images are ready.'
+      : 'Options saved! Some images could not be cached and will load directly from their URLs.';
+  } catch {
+    status.textContent = 'Could not save options. Please try again.';
+  } finally {
+    saveButton.disabled = false;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -161,5 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
   addQuoteBtn.addEventListener("click", () => addQuoteField());
   addLinkBtn.addEventListener("click", () => addLinkField());
   document.getElementById("saveBtn").addEventListener("click", saveOptions);
+  document.getElementById('clearImageCacheBtn').addEventListener('click', async () => {
+    const status = document.getElementById('imageCacheStatus');
+    try {
+      await DoodleImages.clear();
+      status.textContent = 'Image cache cleared. Open a new tab to download fresh copies.';
+    } catch {
+      status.textContent = 'Could not clear the image cache. Please try again.';
+    }
+  });
   restoreOptions();
 });
