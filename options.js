@@ -24,7 +24,7 @@ async function saveOptions() {
   console.log('Saving quote font:', finalQuoteFont, 'Size:', quoteFontSize); // Debug
 
   const saveButton = document.getElementById('saveBtn');
-  const status = document.getElementById('imageCacheStatus');
+  const status = document.getElementById('saveStatus');
   saveButton.disabled = true;
   status.textContent = 'Saving options…';
   // Request directly from the Save click, before any asynchronous work.
@@ -50,10 +50,11 @@ async function saveOptions() {
     });
     document.getElementById('doodleImage').value = doodleImage;
     document.getElementById('backgroundImage').value = backgroundImage;
+    status.textContent = 'Options saved!';
     const results = await Promise.all([...new Set([doodleImage, backgroundImage])]
       .map(source => DoodleImages.warm(source)));
     status.textContent = results.every(Boolean)
-      ? 'Options saved! Images are ready.'
+      ? 'Options saved!'
       : 'Options saved! Some images could not be cached and will load directly from their URLs.';
   } catch {
     status.textContent = 'Could not save options. Please try again.';
