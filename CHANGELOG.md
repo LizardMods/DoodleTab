@@ -5,7 +5,7 @@
 - Removed Chromium-generated `_metadata` integrity files from the source and ignored future copies.
 - Added an explicit release packaging script that includes runtime files and LICENSE, while excluding tests, metadata, development scripts, and repository documentation.
 - Retained the image-cache tests in the repository.
-- Removed development console logging and the temporary new-tab quote placeholder.
+- Removed development console logging.
 - Includes the image caching, Quick Links, and save-feedback changes listed under 1.1.
 
 ## 1.1 — 2026-09-22
