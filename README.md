@@ -19,10 +19,10 @@ Available in the Chrome Web Store
 
 1. Visit the [Chrome Web Store](https://chromewebstore.google.com/detail/doodletab/ipnibnjimgnkmgfinpeloigogdihohdh)
 2. Click "Add to Chrome"
-3. Clidk Extension puzzle icon.
-4. Click on DoodlTabe three dot menu.
-5. Click option.
-6. Customize tell your heart's content then save at the bottem of options page.
+3. Click the Extensions puzzle icon.
+4. Click DoodleTab's three-dot menu.
+5. Click Options.
+6. Customize to your heart's content, then save at the bottom of the options page.
 7. Open a new tab and enjoy your personalized browsing experience!
 
 ## 💡 Why DoodleTab?
@@ -87,11 +87,25 @@ cd DoodleTab
 # 4. Select the DoodleTab folder
 ```
 
-### Checking this change
+### Checking changes
 
 Run `node --test tests/*.test.cjs` for cache reuse, offline reads, permission denial, cache clearing, and fallback checks.
 
 In Chrome, reload the unpacked extension, save remote image URLs and allow the requested site access, then open several new tabs. Check that the images are reused without new downloads. Clear the image cache and open another tab to check that they download again. Also verify same-tab Quick Links, saving after removing a link, and restoring packaged images by saving blank image fields.
+
+### Building the 1.2 release
+
+Run the tests above with Node.js 18 or newer, then use PowerShell 5.1 or newer:
+
+```powershell
+./scripts/package-release.ps1
+```
+
+This creates `dist/DoodleTab-1.2.zip`, using the version in `manifest.json` for the filename. The ZIP contains the extension's runtime files and LICENSE, with `manifest.json` at its root. The script uses an explicit file allowlist; update it when adding runtime assets.
+
+Tests remain in `tests/` in GitHub but are excluded from the release ZIP, along with development scripts, repository documentation, `.git/`, and Chromium-generated `_metadata/`. Generated ZIPs in `dist/` are ignored by Git.
+
+Build from this source checkout, never from an installed browser extension directory or GitHub's source ZIP. Do not copy or regenerate `_metadata` for a release. Extract the generated ZIP to a fresh folder and load it unpacked in Chrome or Brave for the manual checks above before uploading it to the Chrome Web Store.
 
 ## 🤝 Contributing
 

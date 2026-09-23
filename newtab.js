@@ -91,8 +91,6 @@ window.addEventListener("DOMContentLoaded", () => {
       quoteFontSize: "24px"
     },
     (items) => {
-      console.log('Applying quote font:', items.quoteFont, 'Size:', items.quoteFontSize); // Debug
-
       if (quoteElement) {
         if (items.enableQuotes) {
           const today = new Date();

@@ -1,0 +1,5 @@
+# Chromium-generated integrity data must never be committed or packaged.
+_metadata/
+
+# Generated release packages
+/dist/

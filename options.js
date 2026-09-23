@@ -21,8 +21,6 @@ async function saveOptions() {
   const finalQuoteFont = quoteFont === 'custom' ? customQuoteFont : quoteFont;
   const quoteFontSize = document.getElementById('quoteFontSize').value + 'px';
 
-  console.log('Saving quote font:', finalQuoteFont, 'Size:', quoteFontSize); // Debug
-
   const saveButton = document.getElementById('saveBtn');
   const status = document.getElementById('saveStatus');
   saveButton.disabled = true;
@@ -138,8 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("customQuoteFont").value = items.quoteFont;
       }
       document.getElementById("quoteFontSize").value = parseInt(items.quoteFontSize);
-
-      console.log('Restored quote font:', items.quoteFont, 'Size:', items.quoteFontSize); // Debug
 
       linksContainer.innerHTML = "";
       if (items.quickLinks.length > 0) {

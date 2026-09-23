@@ -15,7 +15,7 @@
    "optional_host_permissions": [ "http://*/*", "https://*/*" ],
    "permissions": [ "storage", "search" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.1",
+   "version": "1.2",
    "web_accessible_resources": [ {
       "matches": [ "\u003Call_urls>" ],
       "resources": [ "images/my-doodle.gif", "images/background.jpg" ]
